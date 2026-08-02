@@ -1,0 +1,87 @@
+generated: '2026-08-01'
+method: searched
+source: https://deepwatch.okta.com/.well-known/openid-configuration
+docs: null
+docs_note: Deepwatch publishes no public API authentication documentation. This profile
+  is assembled from the live OIDC discovery document served by Deepwatch's Okta org
+  and from the Security Center console's own login flow and CSP.
+summary:
+  types:
+  - openIdConnect
+  - oauth2
+  api_key_in: []
+  oauth2_flows:
+  - authorizationCode
+  - implicit
+  - refreshToken
+  - password
+  - deviceCode
+  public_api: false
+  access: Authenticated Deepwatch customers only; there is no public/self-serve API
+    credential.
+schemes:
+- name: OktaOIDC
+  type: openIdConnect
+  openIdConnectUrl: https://deepwatch.okta.com/.well-known/openid-configuration
+  issuer: https://deepwatch.okta.com
+  provider: Okta
+  sources:
+  - well-known/deepwatch-openid-configuration.json
+  endpoints:
+    authorization: https://deepwatch.okta.com/oauth2/v1/authorize
+    token: https://deepwatch.okta.com/oauth2/v1/token
+    userinfo: https://deepwatch.okta.com/oauth2/v1/userinfo
+    jwks: https://deepwatch.okta.com/oauth2/v1/keys
+    registration: https://deepwatch.okta.com/oauth2/v1/clients
+    introspection: https://deepwatch.okta.com/oauth2/v1/introspect
+    revocation: https://deepwatch.okta.com/oauth2/v1/revoke
+    end_session: https://deepwatch.okta.com/oauth2/v1/logout
+    device_authorization: https://deepwatch.okta.com/oauth2/v1/device/authorize
+  grant_types:
+  - authorization_code
+  - implicit
+  - refresh_token
+  - password
+  - urn:ietf:params:oauth:grant-type:device_code
+  response_types:
+  - code
+  - id_token
+  - code id_token
+  - code token
+  - id_token token
+  - code id_token token
+  token_endpoint_auth_methods:
+  - client_secret_basic
+  - client_secret_post
+  - client_secret_jwt
+  - private_key_jwt
+  - none
+  pkce:
+    supported: true
+    code_challenge_methods:
+    - S256
+  id_token_signing_alg:
+  - RS256
+  subject_types:
+  - public
+  claims_count: 31
+- name: SecurityCenterSession
+  type: session
+  transport: https
+  applies_to: https://devportalapi.deepwatch.com/graphql/
+  note: 'The Security Center GraphQL API (AWS AppSync) requires an authenticated session
+    brokered by the Okta org above. Anonymous introspection is refused by a WAF rule:
+    HTTP 403 with errorType WAFForbiddenException. No public API key, personal access
+    token or client-credentials path is documented.'
+  sources:
+  - https://devportal.deepwatch.com/main.js
+observations:
+- Okta is also named as a Deepwatch subprocessor on the trust center, consistent with
+  Okta being the identity layer for the customer console.
+- Deepwatch supports Okta and Microsoft Entra ID as customer identity data sources
+  for MDR (see legal.deepwatch.com/supported-technologies); that is a monitored data
+  source, distinct from the console's own SSO above.
+x-evidence:
+  fetched: '2026-08-01'
+  openid_configuration_http_status: 200
+  graphql_introspection_http_status: 403

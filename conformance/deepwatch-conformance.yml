@@ -1,0 +1,84 @@
+generated: '2026-08-01'
+method: searched
+source: https://www.deepwatch.com/trust/, https://security.deepwatch.com/, https://deepwatch.okta.com/.well-known/openid-configuration
+scope_note: Deepwatch publishes no machine-readable API contract, so the cross-cutting
+  API standards below are recorded as unknown/false on observed evidence only. The
+  security and compliance certifications are published and verified.
+standards:
+- id: openid-connect-discovery
+  conforms: true
+  evidence: https://deepwatch.okta.com/.well-known/openid-configuration returns a valid
+    OIDC discovery document (issuer https://deepwatch.okta.com)
+- id: oauth2
+  conforms: true
+  evidence: OIDC discovery advertises authorization_code, implicit, refresh_token,
+    password and device_code grant types with PKCE S256
+- id: rfc7636-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported includes S256
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server returns 404 on all Deepwatch hosts
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on deepwatch.com and www.deepwatch.com
+- id: rfc9457-problem-details
+  conforms: unknown
+  evidence: no public API contract or documented error envelope to evaluate
+- id: openapi
+  conforms: false
+  evidence: no OpenAPI/Swagger document found on any Deepwatch host after probing /openapi.json,
+    /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs, /redoc
+- id: graphql
+  conforms: partial
+  evidence: an AWS AppSync GraphQL endpoint is served at https://devportalapi.deepwatch.com/graphql/,
+    but anonymous introspection is refused (HTTP 403 WAFForbiddenException) so the
+    SDL could not be captured
+- id: asyncapi
+  conforms: false
+  evidence: no AsyncAPI document and no publicly documented webhook or event surface
+- id: a2a-agent-card
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json return 404 on
+    every non-SPA Deepwatch host
+- id: mcp
+  conforms: false
+  evidence: no hosted Model Context Protocol server found; the NEXA agentic-AI ecosystem
+    is a product capability, not a published MCP surface
+- id: llms-txt
+  conforms: true
+  evidence: https://www.deepwatch.com/llms.txt returns a valid llms.txt (HTTP 200,
+    text/plain)
+certifications:
+- id: soc2-type-ii
+  conforms: true
+  evidence: AICPA SOC 2 Type II, audited annually since inception (https://www.deepwatch.com/trust/)
+- id: iso-iec-27001-2022
+  conforms: true
+  evidence: certified 2024 (https://www.deepwatch.com/trust/)
+- id: iso-iec-42001-2023
+  conforms: true
+  evidence: AI management system certification listed on https://security.deepwatch.com/
+- id: pci-dss
+  conforms: true
+  evidence: Level 1 Service Provider requirements (https://www.deepwatch.com/trust/)
+- id: gdpr
+  conforms: true
+  evidence: https://legal.deepwatch.com/gdpr and a published DPA at https://legal.deepwatch.com/dpa
+- id: hipaa
+  conforms: true
+  evidence: named as a supported compliance framework on https://www.deepwatch.com/trust/
+- id: sarbanes-oxley
+  conforms: true
+  evidence: named as a supported compliance framework on https://www.deepwatch.com/trust/
+- id: nydfs-500
+  conforms: true
+  evidence: New York Department of Financial Services named on https://www.deepwatch.com/trust/
+- id: fedramp
+  conforms: false
+  evidence: not named on the trust center or the security and trust page
+frameworks_operationalized:
+- id: mitre-attack
+  evidence: Security Center publishes MITRE ATT&CK detection coverage views (https://www.deepwatch.com/deepwatch-security-center/)
+x-evidence:
+  fetched: '2026-08-01'

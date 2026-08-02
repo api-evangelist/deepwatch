@@ -1,0 +1,73 @@
+generated: '2026-08-01'
+method: derived
+source: probes of https://devportalapi.deepwatch.com/graphql/, https://devportal.deepwatch.com/main.js,
+  well-known/deepwatch-openid-configuration.json
+scope_note: 'Deepwatch publishes no public API reference, so these conventions are
+  what could be observed from the live surface rather than what the provider documents.
+  Every field below is either observed or explicitly marked unknown — nothing is inferred
+  from convention.'
+transport:
+  protocol: GraphQL over HTTPS
+  endpoint: https://devportalapi.deepwatch.com/graphql/
+  implementation: AWS AppSync (observed from the AppSync error envelope)
+  realtime:
+    supported: true
+    protocol: WebSocket
+    channel: wss://*.deepwatch.com/graphql/realtime
+    evidence: connect-src directive in the Security Center Content-Security-Policy
+  rest: false
+authentication:
+  style: OpenID Connect single sign-on brokered by Okta (issuer https://deepwatch.okta.com)
+  public_credentials: false
+  api_keys: not published
+  see: authentication/deepwatch-authentication.yml
+authorization:
+  scopes: standard OIDC scopes only; no product scopes published
+  see: scopes/deepwatch-scopes.yml
+idempotency:
+  supported: unknown
+  header: null
+  note: No idempotency key header or contract is documented, and the API is auth-gated
+    so none could be observed. No Idempotency pointer is emitted for this provider.
+pagination:
+  style: unknown
+  note: GraphQL surface; connection/cursor conventions could not be observed without
+    the SDL.
+versioning:
+  api: no version segment in the endpoint path; no published version scheme
+  service_documents: numbered service descriptions (see lifecycle/deepwatch-lifecycle.yml)
+error_envelope:
+  observed: true
+  format: AppSync GraphQL error array
+  shape:
+    errors:
+    - errorType: string
+      message: string
+  observed_examples:
+  - request: 'POST /graphql/ (anonymous introspection)'
+    http_status: 403
+    body: '{"errors":[{"errorType":"WAFForbiddenException","message":"403 Forbidden"}]}'
+  - request: 'GET /graphql/ (no body)'
+    http_status: 400
+  rfc9457: false
+rate_limiting:
+  signalling: unknown
+  documented: false
+tracing:
+  request_id_header: unknown
+edge:
+  waf: true
+  evidence: anonymous requests are rejected by a WAF rule before reaching the resolver
+    (errorType WAFForbiddenException)
+  cdn_tls:
+    tls_version: TLSv1.3
+    hsts: not set on devportalapi.deepwatch.com
+    see: security/deepwatch-domain-security.yml
+cross_links:
+  authentication: authentication/deepwatch-authentication.yml
+  scopes: scopes/deepwatch-scopes.yml
+  lifecycle: lifecycle/deepwatch-lifecycle.yml
+  conformance: conformance/deepwatch-conformance.yml
+  domain_security: security/deepwatch-domain-security.yml
+x-evidence:
+  fetched: '2026-08-01'

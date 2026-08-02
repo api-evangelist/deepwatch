@@ -1,0 +1,91 @@
+generated: '2026-08-01'
+method: searched
+source: https://legal.deepwatch.com/
+scope_note: Deepwatch is a managed service, not a self-serve API product. Its published
+  lifecycle surface is contractual (service descriptions, SLA, terms) rather than an
+  API versioning or deprecation policy.
+versioning:
+  api:
+    scheme: none-published
+    current: null
+    note: No public API version scheme. The Security Center GraphQL endpoint is served
+      at devportalapi.deepwatch.com/graphql/ with no version segment.
+  service_descriptions:
+    scheme: numbered service description documents
+    docs: https://legal.deepwatch.com/
+    current:
+    - id: mdr-splunk-sd-5.0
+      title: MDR for Splunk Service Description
+      url: https://legal.deepwatch.com/mdr-splunk-sd-5.0
+    - id: mdr-mssentinel-sd-3.0
+      title: MDR for Microsoft Sentinel Service Description
+      url: https://legal.deepwatch.com/mdr-mssentinel-sd-3.0
+    - id: mdr-secops-sd-2.0
+      title: MDR for Google SecOps Service Description
+      url: https://legal.deepwatch.com/mdr-secops-sd-2.0
+    - id: mdr-csng-sd-2.0
+      title: MDR for CrowdStrike Next-Gen SIEM Service Description
+      url: https://legal.deepwatch.com/mdr-csng-sd-2.0
+    - id: medr-sd-3.0
+      title: Managed EDR Service Description
+      url: https://legal.deepwatch.com/medr-sd-3.0
+    - id: vm-sd-3.0
+      title: Vulnerability Management Service Description
+      url: https://legal.deepwatch.com/vm-sd-3.0
+    - id: ctem-sd-2.0
+      title: Continuous Threat Exposure Management Service Description
+      url: https://legal.deepwatch.com/ctem-sd-2.0
+    - id: mfw-sd-2.0
+      title: Managed Firewall Service Description
+      url: https://legal.deepwatch.com/mfw-sd-2.0
+    - id: dwm-sd-2.0
+      title: Dark Web Monitoring Service Description
+      url: https://legal.deepwatch.com/dwm-sd-2.0
+    - id: tscs-2025-2
+      title: Terms and Conditions
+      url: https://legal.deepwatch.com/tscs-2025-2
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: unknown
+  note: The Terms and Conditions (tscs-2025-2) address subscription termination but
+    publish no feature deprecation, sunset or advance-notice policy. No RFC 8594 Sunset/Deprecation
+    header behaviour could be observed because the API is auth-gated.
+sla:
+  url: https://legal.deepwatch.com/sla-102025
+  effective: '2025-11-01'
+  uptime_target: 99.9%
+  uptime_scope: Deepwatch Guardian Platform availability, measured per calendar month
+  detection_response_targets:
+  - priority: Critical
+    mttd: 10 minutes
+    mtte: 1 hour
+    attainment: 95%
+  - priority: High
+    mttd: 15 minutes
+    mtte: 2 hours
+    attainment: 95%
+  - priority: Medium
+    mttd: 30 minutes
+    mtte: 8 hours
+    attainment: 95%
+  - priority: Low
+    mttd: 1 hour
+    mtte: 24 hours
+    attainment: 95%
+  qualifier: SLAs apply only when at least 20 actionable alerts are processed in a
+    calendar month.
+  definitions:
+    MTTD: average duration between the occurrence of an event and the moment it is
+      identified through an alert
+    MTTE: average duration between the triggering of an alert and the point at which
+      the investigation is escalated to the customer
+status_page: https://status.deepwatch.com/
+status_page_platform: Atlassian Statuspage
+support: https://www.deepwatch.com/support/
+deprecated_operations: []
+x-evidence:
+  fetched: '2026-08-01'
+  sla_http_status: 200
+  status_page_http_status: 200
+  legal_index_http_status: 200

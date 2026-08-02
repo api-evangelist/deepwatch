@@ -1,0 +1,66 @@
+generated: '2026-08-01'
+method: searched
+source: https://deepwatch.okta.com/.well-known/openid-configuration
+docs: null
+docs_note: 'Deepwatch publishes no API scope or permission reference. The scopes below
+  are the OIDC scopes advertised by the org authorization server that fronts the Security
+  Center console — they are standard OpenID Connect scopes plus Okta''s groups scope,
+  not Deepwatch product scopes. No product-level authorization scopes are publicly
+  documented.'
+schemes:
+- name: OktaOIDC
+  type: openIdConnect
+  issuer: https://deepwatch.okta.com
+  source: well-known/deepwatch-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://deepwatch.okta.com/oauth2/v1/authorize
+    tokenUrl: https://deepwatch.okta.com/oauth2/v1/token
+  - flow: implicit
+    authorizationUrl: https://deepwatch.okta.com/oauth2/v1/authorize
+  - flow: deviceCode
+    deviceAuthorizationUrl: https://deepwatch.okta.com/oauth2/v1/device/authorize
+    tokenUrl: https://deepwatch.okta.com/oauth2/v1/token
+scopes:
+- scope: openid
+  description: Request an OpenID Connect ID token for the authenticating user.
+  standard: true
+  sources:
+  - well-known/deepwatch-openid-configuration.json
+- scope: profile
+  description: Access the user's default profile claims (name, preferred_username,
+    locale, picture and related).
+  standard: true
+  sources:
+  - well-known/deepwatch-openid-configuration.json
+- scope: email
+  description: Access the user's email address and email_verified claim.
+  standard: true
+  sources:
+  - well-known/deepwatch-openid-configuration.json
+- scope: address
+  description: Access the user's address claim.
+  standard: true
+  sources:
+  - well-known/deepwatch-openid-configuration.json
+- scope: phone
+  description: Access the user's phone_number and phone_number_verified claims.
+  standard: true
+  sources:
+  - well-known/deepwatch-openid-configuration.json
+- scope: offline_access
+  description: Request a refresh token so the client can renew access without user
+    interaction.
+  standard: true
+  sources:
+  - well-known/deepwatch-openid-configuration.json
+- scope: groups
+  description: Okta-specific scope returning the user's group memberships, used for
+    role mapping in the Security Center console.
+  standard: false
+  vendor: Okta
+  sources:
+  - well-known/deepwatch-openid-configuration.json
+summary:
+  scope_count: 7
+  product_scopes_published: false

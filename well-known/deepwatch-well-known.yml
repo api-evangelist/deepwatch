@@ -1,0 +1,104 @@
+generated: '2026-08-01'
+method: probed
+source: live GET of /.well-known/* on every Deepwatch host in apis.yml
+notes:
+- 'devportal.deepwatch.com is a single-page app whose server answers HTTP 200 with
+  the same 4,877-byte HTML shell for every path, including all /.well-known/* probes.
+  Those 200s are catch-all false positives and are recorded as such, not as documents.'
+- 'guardian.deepwatch.com behaves the same way (200, 1,016-byte HTML shell, every
+  path).'
+- 'The 200 at status.deepwatch.com/.well-known/security.txt is Atlassian Statuspage''s
+  own PGP-signed file (Canonical: https://www.atlassian.com/.well-known/security.txt),
+  not a Deepwatch document, so it is not saved.'
+hosts:
+- host: https://www.deepwatch.com
+  documents:
+  - path: /llms.txt
+    status: 200
+    content_type: text/plain
+    file: ../llms/deepwatch-llms.txt
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://deepwatch.okta.com
+  role: identity provider (Okta org referenced by the Security Center console)
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: application/json
+    file: deepwatch-openid-configuration.json
+- host: https://devportalapi.deepwatch.com
+  role: Security Center GraphQL API (AWS AppSync)
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://devportal.deepwatch.com
+  role: Security Center console (SPA)
+  documents:
+  - path: /.well-known/*
+    status: 200
+    valid: false
+    reason: spa-catchall-html
+- host: https://login.deepwatch.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/security.txt
+    status: 405
+- host: https://legal.deepwatch.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+- host: https://security.deepwatch.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+- host: https://status.deepwatch.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    owner: Atlassian Statuspage
+    saved: false
+  - path: /.well-known/agent-card.json
+    status: 404
+- host: https://partners.deepwatch.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+summary:
+  documents_saved: 1
+  security_txt: false
+  openid_configuration: true
+  oauth_authorization_server: false
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false

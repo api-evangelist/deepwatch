@@ -1,0 +1,66 @@
+generated: '2026-08-01'
+method: searched
+probe: true
+source: https://security.deepwatch.com/
+url: https://security.deepwatch.com/
+platform: SafeBase
+summary_page: https://www.deepwatch.com/trust/
+certifications:
+- name: SOC 2 Type II
+  detail: Audited against and certified to the AICPA SOC 2 Type II standard annually
+    since inception.
+  source: https://www.deepwatch.com/trust/
+- name: ISO/IEC 27001:2022
+  detail: Certified in 2024; information security management system conforms to ISO/IEC
+    27001:2022.
+  source: https://www.deepwatch.com/trust/
+- name: ISO/IEC 42001:2023
+  detail: AI management system certification listed on the SafeBase trust center.
+  source: https://security.deepwatch.com/
+- name: PCI DSS
+  detail: Meets PCI Security Standards Council requirements for Level 1 Service Providers;
+    certified since inception.
+  source: https://www.deepwatch.com/trust/
+compliance_frameworks:
+- GDPR
+- HIPAA
+- Sarbanes-Oxley
+- NYDFS (New York Department of Financial Services)
+security_grades:
+- provider: SecurityScorecard
+  grade: A
+- provider: Qualys SSL Labs
+  grade: A
+subprocessors:
+  url: https://legal.deepwatch.com/sub-processors
+  named_on_trust_center:
+  - Okta
+  - ServiceNow
+  - Broadcom Inc.
+  - Microsoft
+  - Amazon Web Services
+data_protection:
+  dpa: https://legal.deepwatch.com/dpa
+  gdpr: https://legal.deepwatch.com/gdpr
+disclosure_contact: security@deepwatch.com
+evidence:
+- source: https://security.deepwatch.com/
+  http_status: 200
+  fetched: '2026-08-01'
+  keywords:
+  - iso/iec 27001
+  - iso/iec 42001
+  - pci dss
+  - soc 2
+  - gdpr
+  - trust center
+- source: https://www.deepwatch.com/trust/
+  http_status: 200
+  fetched: '2026-08-01'
+  keywords:
+  - soc 2 type ii
+  - iso 27001
+  - pci dss
+  - hipaa
+  - gdpr
+  - sarbanes-oxley
