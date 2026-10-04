@@ -57,6 +57,15 @@ tags:
 - Threat Intelligence
 - Vulnerability Management
 - Managed Security Services
+- AI Agents
+tags_raw:
+- Company
+- Cybersecurity
+- Managed Detection and Response
+- Security Operations
+- Threat Intelligence
+- Vulnerability Management
+- Managed Security Services
 - Agentic AI
 apis:
 - name: Deepwatch Security Center API
