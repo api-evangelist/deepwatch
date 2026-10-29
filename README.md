@@ -64,37 +64,100 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Deepwatch is a US managed security services provider delivering AI-native managed detection and response (MDR) governed by human security experts. Its Guardian platform and Security Center console correlate telemetry from a customer's existing SIEM, EDR, cloud, identity, network and vulnerability tooling rather than requiring a rip-and-replace.
+Deepwatch is a US managed security services provider delivering AI-native managed detection and response (MDR) governed by human security experts. Its Guardian platform and Security Center console aggregate and correlate telemetry from a customer's existing SIEM, EDR, cloud, identity, network and vulnerability tooling — Splunk, CrowdStrike Falcon Next-Gen SIEM, Microsoft Sentinel, Google SecOps, SentinelOne, Microsoft Defender, Carbon Black, Okta, Entra ID, Tenable, Qualys, Wiz, Palo Alto and Fortinet among them — rather than requiring a rip-and-replace. Services span MDR, managed endpoint detection and response, continuous threat exposure management, vulnerability management, managed firewall, dark web monitoring and active response, with the NEXA agentic-AI ecosystem layered across detection, investigation and response. Deepwatch publishes contractual service-level commitments (99.9% platform uptime, 10-minute critical MTTD), a SafeBase trust center and an llms.txt, but exposes no public API documentation: the customer-facing surface is an authenticated GraphQL API behind the Security Center console.
 
-- Website: https://www.deepwatch.com/
-- Security Center console: https://devportal.deepwatch.com/
-- Status: https://status.deepwatch.com/
-- Trust center: https://security.deepwatch.com/
-- Legal / service descriptions / SLA: https://legal.deepwatch.com/
+**Areas:** Company · Cybersecurity · Managed Detection and Response · Security Operations · Threat Intelligence · Vulnerability Management · Managed Security Services · AI Agents
 
-## API surface
+## Deepwatch on APIs.io
 
-Deepwatch publishes **no public API documentation, OpenAPI or SDK**. The customer-facing
-contract is an authenticated GraphQL API (AWS AppSync) at
-`https://devportalapi.deepwatch.com/graphql/`, discovered in the Security Center console
-bundle and advertised with a realtime WebSocket channel in the console's CSP. Anonymous
-introspection is refused by a WAF rule (HTTP 403 `WAFForbiddenException`); access is gated
-behind Okta-brokered single sign-on.
+Everything profiled for Deepwatch is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/deepwatch/](https://apis.io/providers/deepwatch/)** — or go straight to one of the APIs or properties below.
 
-## Artifacts
+### APIs (1)
 
-| Dir | File | Method |
-|---|---|---|
-| `llms/` | `deepwatch-llms.txt` | searched (verbatim from `www.deepwatch.com/llms.txt`) |
-| `well-known/` | `deepwatch-well-known.yml`, `deepwatch-openid-configuration.json` | probed |
-| `authentication/` | `deepwatch-authentication.yml` | searched |
-| `scopes/` | `deepwatch-scopes.yml` | searched |
-| `conventions/` | `deepwatch-conventions.yml` | derived |
-| `conformance/` | `deepwatch-conformance.yml` | searched |
-| `lifecycle/` | `deepwatch-lifecycle.yml` | searched (SLA, status page, service descriptions) |
-| `security/` | `deepwatch-domain-security.yml` | probed |
-| `security/` | `deepwatch-vulnerability-disclosure.yml` | searched |
-| `security/` | `deepwatch-trust-center.yml` | searched |
+- [Deepwatch Security Center API](https://apis.io/apis/deepwatch/deepwatch-security-center-api/) — The authenticated GraphQL API behind the Deepwatch Security Center console (devportal.deepwatch.com). The endpoint is an AWS AppSync GraphQL service at…
 
-Not present, and deliberately not authored: no OpenAPI, AsyncAPI, webhooks, MCP server,
-A2A agent card, SDKs/packages, CLI, sandbox, changelog or public error catalog were found.
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Deepwatch Authentication](https://apis.io/security/deepwatch/deepwatch-authentication/)
+- [Deepwatch Domain Security](https://apis.io/security/deepwatch/deepwatch-domain-security/)
+- [Deepwatch Trust Center](https://apis.io/security/deepwatch/deepwatch-trust-center/)
+- [Deepwatch Vulnerability Disclosure](https://apis.io/security/deepwatch/deepwatch-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Deepwatch Scopes](https://apis.io/scopes/deepwatch/deepwatch-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.deepwatch.com/)
+- [Support](https://www.deepwatch.com/support/)
+- [Blog](https://www.deepwatch.com/blog/)
+- [Security](https://www.deepwatch.com/trust/)
+- [Compliance](https://www.deepwatch.com/trust/)
+- [Terms of service](https://legal.deepwatch.com/tscs-2025-2)
+- [Privacy policy](https://www.deepwatch.com/privacy-policy/)
+- [GitHub](https://github.com/deepwatch)
+- [Status](https://status.deepwatch.com/)
+
+## API Evangelist rating
+
+**Kin Score 30.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 43.4 |
+
+**Agent readiness 15.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 45.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/deepwatch/](https://apis.io/providers/deepwatch/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Deepwatch: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/deepwatch/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
